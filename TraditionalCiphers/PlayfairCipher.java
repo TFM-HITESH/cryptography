@@ -1,3 +1,4 @@
+package TraditionalCiphers;
 import java.util.Scanner;
 
 public class PlayfairCipher {
