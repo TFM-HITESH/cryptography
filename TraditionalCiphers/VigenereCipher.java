@@ -80,5 +80,7 @@ public class VigenereCipher {
         String newPlainText = decryptString(cipherText, key);
 
         System.out.println("Decrypted Plaintext: " + newPlainText);
+
+        sc.close();
     }
 }

@@ -1,0 +1,1 @@
+javac ModernCiphers/CipherTools/CipherToolkit.java ModernCiphers/DES/DESKeygen.java ModernCiphers/DES/DESEncryption.java ModernCiphers/Test.java

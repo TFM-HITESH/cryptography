@@ -144,5 +144,7 @@ public class PlayfairCipher {
         System.out.println("\nDecryption Process:");
         String newPlainText = decryptString(cipherText, key);
         System.out.println("Decrypted Plaintext: " + newPlainText);
+
+        sc.close();
     }
 }

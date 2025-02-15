@@ -220,5 +220,7 @@ public class HillCipher {
         System.out.println("\nDecryption Process:");
         String decryptedText = decrypt(cipherText, key, n);
         System.out.println("Decrypted Plaintext: " + decryptedText);
+        
+        sc.close();
     }
 }
