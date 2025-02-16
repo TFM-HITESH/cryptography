@@ -118,6 +118,8 @@ public class DESEncryption {
 
         return finalOutput;
     }
+
+    
     public void DESEncryptionProcess(String input, DESKeygen keys) 
     {
         // Original Input

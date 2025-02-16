@@ -145,4 +145,10 @@ public class CipherToolkit
         }
         System.out.println();
     }
+
+    public static void swap(int[] S, int i, int j) {
+        int temp = S[i];
+        S[i] = S[j];
+        S[j] = temp;
+    }
 }

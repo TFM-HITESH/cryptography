@@ -12,9 +12,5 @@ public class Test {
         String plainText = "1234 56AB CD13 2536";
         DESEncryption encryption = new DESEncryption();
         encryption.DESEncryptionProcess(plainText, keys);
-
-
-        // System.out.println(keys.DESKeys[15]);
-        // System.out.println(encryption.roundOutputs[15]);
     }
 }
