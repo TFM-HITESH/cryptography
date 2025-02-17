@@ -1,12 +1,11 @@
 package ModernCiphers.DES;
-import java.io.*;
 import java.util.*;
 import ModernCiphers.CipherTools.CipherToolkit;
 
 public class DESKeygen
 {
     public String[] DESKeys;
-    int keyPBox[] = {
+    static int keyPBox[] = {
         14, 17, 11, 24, 1, 5, 3, 28, 
         15, 6, 21, 10, 23, 19, 12, 4, 
         26, 8, 16, 7, 27, 20, 13, 2, 
@@ -15,7 +14,7 @@ public class DESKeygen
         34, 53, 46, 42, 50, 36, 29, 32
     };
 
-    int parityDropPBox[] = {
+    static int parityDropPBox[] = {
         57, 49, 41, 33, 25, 17, 9, 1, 
         58, 50, 42, 34, 26, 18, 10, 2, 
         59, 51, 43, 35, 27, 19, 11, 3, 
@@ -37,17 +36,17 @@ public class DESKeygen
 
         // Process Input and Display Binary
         System.out.println("Binary Input = ");
-        String binInput = ModernCiphers.CipherTools.CipherToolkit.hexToBin(ModernCiphers.CipherTools.CipherToolkit.processString(input));
-        ModernCiphers.CipherTools.CipherToolkit.rectPack(binInput, 4, 4);
+        String binInput = CipherToolkit.hexToBin(CipherToolkit.processString(input));
+        CipherToolkit.rectPack(binInput, 4, 4);
         
         // Perform Parity Box Drop
         System.out.println("Cipher Key = ");
-        String parityDrop = ModernCiphers.CipherTools.CipherToolkit.pBox(binInput, parityDropPBox);
-        ModernCiphers.CipherTools.CipherToolkit.rectPack(parityDrop, 4, 4);
+        String parityDrop = CipherToolkit.pBox(binInput, parityDropPBox);
+        CipherToolkit.rectPack(parityDrop, 4, 4);
 
         // Splitting into two halves
-        String left = ModernCiphers.CipherTools.CipherToolkit.leftHalf(parityDrop);
-        String right = ModernCiphers.CipherTools.CipherToolkit.rightHalf(parityDrop);
+        String left = CipherToolkit.leftHalf(parityDrop);
+        String right = CipherToolkit.rightHalf(parityDrop);
 
         int amt;
 
@@ -59,18 +58,29 @@ public class DESKeygen
             amt = (i == 1 || i == 2 || i == 9 || i == 16) ? 1 : 2;
             
             // Doing left shifts
-            left = ModernCiphers.CipherTools.CipherToolkit.shiftLeft(left, amt);
-            right = ModernCiphers.CipherTools.CipherToolkit.shiftLeft(right, amt);
+            left = CipherToolkit.shiftLeft(left, amt);
+            right = CipherToolkit.shiftLeft(right, amt);
 
             // Moving through final P box
-            String outputKey = ModernCiphers.CipherTools.CipherToolkit.pBox(left + right, this.keyPBox);
+            String outputKey = CipherToolkit.pBox(left + right, keyPBox);
             System.out.println("Generated Key = ");
-            ModernCiphers.CipherTools.CipherToolkit.rectPack(outputKey, 6, 4);
+            CipherToolkit.rectPack(outputKey, 6, 4);
 
             // Converting back to Hex
-            String outputHexKey = ModernCiphers.CipherTools.CipherToolkit.binToHex(outputKey).toUpperCase();
+            String outputHexKey = CipherToolkit.binToHex(outputKey).toUpperCase();
             System.out.println("Output Hex Key " + (i) + " = " + outputHexKey + "\n");
             this.DESKeys[i-1] = outputHexKey;
         }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the input Cipher Key");
+        String inputKey = sc.nextLine();
+        sc.close();
+
+        DESKeygen keys = new DESKeygen();
+        keys.DESKeyGeneration(inputKey);
     }
 }

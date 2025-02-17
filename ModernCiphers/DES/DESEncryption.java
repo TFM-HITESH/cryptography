@@ -104,17 +104,17 @@ public class DESEncryption {
 
     public String fiestelRound(String input, String roundKey)
     {
-        String expandedOutput = ModernCiphers.CipherTools.CipherToolkit.pBox(input, this.expansionPBox);
-        String xorOutput = ModernCiphers.CipherTools.CipherToolkit.XOR(expandedOutput, roundKey);
+        String expandedOutput = CipherToolkit.pBox(input, this.expansionPBox);
+        String xorOutput = CipherToolkit.XOR(expandedOutput, roundKey);
 
         String sBoxOutput = "";
         
         for(int i=0; i<8; i++)
         {
-            sBoxOutput += ModernCiphers.CipherTools.CipherToolkit.DESSBox(xorOutput.substring(i*6, i*6 + 6), this.sBoxes[i]);
+            sBoxOutput += CipherToolkit.DESSBox(xorOutput.substring(i*6, i*6 + 6), this.sBoxes[i]);
         }
 
-        String finalOutput = ModernCiphers.CipherTools.CipherToolkit.pBox(sBoxOutput, this.straightPBox);
+        String finalOutput = CipherToolkit.pBox(sBoxOutput, this.straightPBox);
 
         return finalOutput;
     }
@@ -127,35 +127,46 @@ public class DESEncryption {
 
         // Process Input and Display Binary
         System.out.println("Binary Input = ");
-        String binInput = ModernCiphers.CipherTools.CipherToolkit.hexToBin(ModernCiphers.CipherTools.CipherToolkit.processString(input));
-        ModernCiphers.CipherTools.CipherToolkit.rectPack(binInput, 4, 4);
+        String binInput = CipherToolkit.hexToBin(CipherToolkit.processString(input));
+        CipherToolkit.rectPack(binInput, 4, 4);
 
         //Doing initial permutation
-        String intermediateString = ModernCiphers.CipherTools.CipherToolkit.pBox(binInput, initialPBox);
+        String intermediateString = CipherToolkit.pBox(binInput, initialPBox);
 
         for(int i=1; i<=16; i++)
         {
             System.out.println("-------------------------   ROUND " + i + "   -------------------------\n");
 
-            String left = ModernCiphers.CipherTools.CipherToolkit.leftHalf(intermediateString);
-            String right = ModernCiphers.CipherTools.CipherToolkit.rightHalf(intermediateString);
+            String left = CipherToolkit.leftHalf(intermediateString);
+            String right = CipherToolkit.rightHalf(intermediateString);
 
-            System.out.println(ModernCiphers.CipherTools.CipherToolkit.binToHex(left));
-            System.out.println(ModernCiphers.CipherTools.CipherToolkit.binToHex(right));
+            System.out.println(CipherToolkit.binToHex(left));
+            System.out.println(CipherToolkit.binToHex(right));
 
-            String processedRight = this.fiestelRound(right, ModernCiphers.CipherTools.CipherToolkit.hexToBin(keys.DESKeys[i-1]));
-            String whitener = ModernCiphers.CipherTools.CipherToolkit.XOR(left, processedRight);
+            String processedRight = this.fiestelRound(right, CipherToolkit.hexToBin(keys.DESKeys[i-1]));
+            String whitener = CipherToolkit.XOR(left, processedRight);
 
             intermediateString = right + whitener;
             System.out.println("Generated Round Cipher = ");
-            ModernCiphers.CipherTools.CipherToolkit.rectPack(intermediateString, 4, 8);
+            CipherToolkit.rectPack(intermediateString, 4, 8);
 
-            String outputHexValue = ModernCiphers.CipherTools.CipherToolkit.binToHex(intermediateString).toUpperCase();
+            String outputHexValue = CipherToolkit.binToHex(intermediateString).toUpperCase();
             System.out.println("Output Hex Value " + (i) + " = " + outputHexValue + "\n");
             this.roundOutputs[i-1] = outputHexValue;
         }
 
-        String finalOutput = ModernCiphers.CipherTools.CipherToolkit.pBox(binInput, finalPBox);
-        ModernCiphers.CipherTools.CipherToolkit.rectPack(ModernCiphers.CipherTools.CipherToolkit.binToHex(finalOutput).toUpperCase(), 4, 4);
+        String finalOutput = CipherToolkit.pBox(binInput, finalPBox);
+        CipherToolkit.rectPack(CipherToolkit.binToHex(finalOutput).toUpperCase(), 4, 4);
+    }
+
+    public static void main(String[] args) 
+    {
+        String key = "AABB 0918 2736 CCDD";
+        DESKeygen keys = new DESKeygen();
+        keys.DESKeyGeneration(key);
+
+        String plainText = "1234 56AB CD13 2536";
+        DESEncryption encryption = new DESEncryption();
+        encryption.DESEncryptionProcess(plainText, keys);
     }
 }
