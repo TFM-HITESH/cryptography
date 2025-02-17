@@ -69,12 +69,13 @@ public class KeyScheduler {
             this.displayVectors(false);
         }
     }
+    
     public static void main(String[] args) {
-        KeyScheduler k = new KeyScheduler(8);
+        KeyScheduler randomKeys = new KeyScheduler(8);
 
         int[] key = {1, 2, 3, 6};
 
-        k.initializationProcess(key);
-        k.permutationProcess();
+        randomKeys.initializationProcess(key);
+        randomKeys.permutationProcess();
     }
 }
