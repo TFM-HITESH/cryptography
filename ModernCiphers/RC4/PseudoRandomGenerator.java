@@ -7,7 +7,7 @@ public class PseudoRandomGenerator {
 
     public PseudoRandomGenerator(int plainTextSize)
     {
-        pseudoRandomKeys = new int[plainTextSize];
+        this.pseudoRandomKeys = new int[plainTextSize];
     }
 
     public void pseudoRandomKeyGenerator(int S[])

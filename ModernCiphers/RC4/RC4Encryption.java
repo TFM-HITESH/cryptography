@@ -8,14 +8,14 @@ public class RC4Encryption
 
     RC4Encryption(int plainTextSize)
     {
-        cipherText = new int[plainTextSize];
+        this.cipherText = new int[plainTextSize];
     }
 
     public void encrypt(int input[], int key[])
     {
         for(int i=0; i<input.length; i++)
         {
-            cipherText[i] = Integer.parseInt(CipherToolkit.XOR(Integer.toBinaryString(input[i]), Integer.toBinaryString(key[i])), 2);
+            this.cipherText[i] = Integer.parseInt(CipherToolkit.XOR(Integer.toBinaryString(input[i]), Integer.toBinaryString(key[i])), 2);
         }
     }
 

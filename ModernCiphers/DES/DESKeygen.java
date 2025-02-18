@@ -26,7 +26,7 @@ public class DESKeygen
 
     public DESKeygen()
     {
-        DESKeys = new String[16];
+        this.DESKeys = new String[16];
     }
 
     public void DESKeyGeneration(String input)

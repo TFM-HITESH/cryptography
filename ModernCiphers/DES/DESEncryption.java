@@ -118,7 +118,7 @@ public class DESEncryption {
 
     public DESEncryption()
     {
-        roundOutputs = new String[16];
+        this.roundOutputs = new String[16];
     }
 
     public static String fiestelRound(String input, String roundKey)

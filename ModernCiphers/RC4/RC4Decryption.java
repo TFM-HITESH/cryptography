@@ -7,14 +7,14 @@ public class RC4Decryption {
 
     RC4Decryption(int cipherTextSize)
     {
-        plainText = new int[cipherTextSize];
+        this.plainText = new int[cipherTextSize];
     }
 
     public void encrypt(int input[], int key[])
     {
         for(int i=0; i<input.length; i++)
         {
-            plainText[i] = Integer.parseInt(CipherToolkit.XOR(Integer.toBinaryString(input[i]), Integer.toBinaryString(key[i])), 2);
+            this.plainText[i] = Integer.parseInt(CipherToolkit.XOR(Integer.toBinaryString(input[i]), Integer.toBinaryString(key[i])), 2);
         }
     }
 

@@ -71,8 +71,6 @@ public class CipherToolkit
         return out.toString();
     }
 
-    
-
     public static String leftHalf(String input)
     {
         return input.substring(0, input.length()/2);
@@ -149,4 +147,6 @@ public class CipherToolkit
         S[i] = S[j];
         S[j] = temp;
     }
+
+    
 }
