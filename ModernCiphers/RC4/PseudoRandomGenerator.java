@@ -15,7 +15,7 @@ public class PseudoRandomGenerator {
         int i = 0;
         int j = 0;
 
-        for(int k=0; k<pseudoRandomKeys.length; i++)
+        for(int k=0; k<this.pseudoRandomKeys.length; k++)
         {
             System.out.println("\n====================================\n");
             System.out.println("P[" + k + "] :\n");
@@ -25,14 +25,14 @@ public class PseudoRandomGenerator {
             CipherToolkit.swap(S, i, j);
             System.out.println("Swap(S[" + i + "], S[" + j + "])");
 
-            System.out.print("\nState Vector :");
-            for(int m=0; i<S.length; i++)
+            System.out.print("\nState Vector : ");
+            for(int m=0; m<S.length; m++)
             {
                 System.out.print(S[m] + " ");
             }
 
-            pseudoRandomKeys[k] = S[(S[i] + S[j]) % S.length];
-            System.out.println("\nKey = S[" + ((S[i] + S[j]) % S.length) + "] = " + pseudoRandomKeys[k]);
+            this.pseudoRandomKeys[k] = S[(S[i] + S[j]) % S.length];
+            System.out.println("\nKey = S[" + ((S[i] + S[j]) % S.length) + "] = " + this.pseudoRandomKeys[k]);
 
             System.out.println("\n====================================\n");
         }
@@ -42,6 +42,9 @@ public class PseudoRandomGenerator {
     
     public static void main(String[] args) 
     {
-        
+        PseudoRandomGenerator pseudoKeys = new PseudoRandomGenerator(4);
+        KeyScheduler randomKeys = new KeyScheduler(8, new int[] {1, 2, 3, 6});
+
+        pseudoKeys.pseudoRandomKeyGenerator(randomKeys.getS());
     }
 }

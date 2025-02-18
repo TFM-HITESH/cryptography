@@ -109,6 +109,21 @@ public class CipherToolkit
     {
         StringBuilder out = new StringBuilder();
 
+        if(input.length() != key.length())
+        {
+            for(int i=0; i<=Math.abs(input.length() - key.length()); i++)
+            {
+                if(input.length() > key.length())
+                {
+                    key = "0" + key;
+                }
+                else
+                {
+                    input = "0" + input;
+                }
+            }
+        }
+
         for(int i=0; i<input.length(); i++)
         {
             if(input.charAt(i) == key.charAt(i))

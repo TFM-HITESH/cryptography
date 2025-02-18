@@ -13,6 +13,20 @@ public class KeyScheduler {
         K = new int[vectorSize];
     }
 
+    public KeyScheduler(int vectorSize, int key[])
+    {
+        S = new int[vectorSize];
+        K = new int[vectorSize];
+
+        this.initializationProcess(key);
+        this.permutationProcess();
+    }
+
+    public int[] getS()
+    {
+        return this.S;
+    }
+
     public void initializationProcess(int[] key)
     {
         for(int i=0; i<S.length; i++)
@@ -65,11 +79,11 @@ public class KeyScheduler {
             j = (j + S[i] + K[i]) % S.length;
             System.out.println("j = j + S[" + i + "] + K[" + i + "]  = " + j);
             System.out.println("Swap(S[" + i + "], S[" + j + "])");
-            ModernCiphers.CipherTools.CipherToolkit.swap(S, i, j);
+            CipherToolkit.swap(S, i, j);
             this.displayVectors(false);
         }
     }
-    
+
     public static void main(String[] args) {
         KeyScheduler randomKeys = new KeyScheduler(8);
 

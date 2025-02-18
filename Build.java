@@ -16,6 +16,10 @@ public class Build {
         }
 
         String[] files = {
+            "TraditionalCiphers/CaesarCipher.java",
+            "TraditionalCiphers/VigenereCipher.java",
+            "TraditionalCiphers/PlayfairCipher.java",
+            "TraditionalCiphers/HillCipher.java",
             "ModernCiphers/CipherTools/CipherToolkit.java", 
             "ModernCiphers/DES/DESKeygen.java", 
             "ModernCiphers/DES/DESEncryption.java", 
@@ -76,6 +80,7 @@ public class Build {
         System.out.println("\nCompilation Summary:");
         System.out.println("✔ " + successCount + " files compiled successfully.");
         System.out.println("❌ " + failureCount + " files failed to compile.");
+        System.out.println();
     }
 
     private static boolean compileFile(String file) {
