@@ -71,24 +71,7 @@ public class CipherToolkit
         return out.toString();
     }
 
-    public static String DESSBox(String input, int sBox[][])
-    {
-        String row = "" + input.charAt(0) + input.charAt(5);
-        String col = input.substring(1, 5);
-
-        int rowNum = Integer.parseInt(row, 2);
-        int colNum = Integer.parseInt(col, 2);
-
-        int subValue = sBox[rowNum][colNum];
-
-        String subString = Integer.toBinaryString(subValue);
-        while(subString.length() < 4)
-        {
-            subString = "0" + subString;
-        }
-
-        return subString;
-    }
+    
 
     public static String leftHalf(String input)
     {

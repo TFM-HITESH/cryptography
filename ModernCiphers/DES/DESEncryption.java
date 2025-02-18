@@ -6,7 +6,7 @@ public class DESEncryption {
 
     public String[] roundOutputs;
 
-    int[] initialPBox = {
+    static int[] initialPBox = {
         58, 50, 42, 34, 26, 18, 10, 2,
         60, 52, 44, 36, 28, 20, 12, 4,
         62, 54, 46, 38, 30, 22, 14, 6,
@@ -17,7 +17,7 @@ public class DESEncryption {
         63, 55, 47, 39, 31, 23, 15, 7
     };
 
-    int[] finalPBox = {
+    static int[] finalPBox = {
         40, 8, 48, 16, 56, 24, 64, 32,
         39, 7, 47, 15, 55, 23, 63, 31,
         38, 6, 46, 14, 54, 22, 62, 30,
@@ -28,7 +28,7 @@ public class DESEncryption {
         33, 1, 41, 9, 49, 17, 57, 25
     };
 
-    int expansionPBox[] = {
+    static int expansionPBox[] = {
         32, 1, 2, 3, 4, 5, 
         4, 5, 6, 7, 8, 9, 
         8, 9, 10, 11, 12, 13, 
@@ -39,14 +39,14 @@ public class DESEncryption {
         28, 29, 30, 31, 32, 1
     };
 
-    int straightPBox[] = {
+    static int straightPBox[] = {
         16, 7, 20, 21, 29, 12, 28, 17, 
         1, 15, 23, 26, 05, 18, 31, 10, 
         2, 8, 24, 14, 32, 27, 03, 9, 
         19, 13, 30, 06, 22, 11, 04, 25
     };
 
-    int sBoxes[][][] = {
+    static int sBoxes[][][] = {
         {
             {14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7},
             {0, 15, 7, 4, 14, 2, 13, 10, 3, 6, 12, 11, 9, 5, 3, 8},
@@ -97,24 +97,43 @@ public class DESEncryption {
         }
     };
 
+    public static String DESSBox(String input, int sBox[][])
+    {
+        String row = "" + input.charAt(0) + input.charAt(5);
+        String col = input.substring(1, 5);
+
+        int rowNum = Integer.parseInt(row, 2);
+        int colNum = Integer.parseInt(col, 2);
+
+        int subValue = sBox[rowNum][colNum];
+
+        String subString = Integer.toBinaryString(subValue);
+        while(subString.length() < 4)
+        {
+            subString = "0" + subString;
+        }
+
+        return subString;
+    }
+
     public DESEncryption()
     {
         roundOutputs = new String[16];
     }
 
-    public String fiestelRound(String input, String roundKey)
+    public static String fiestelRound(String input, String roundKey)
     {
-        String expandedOutput = CipherToolkit.pBox(input, this.expansionPBox);
+        String expandedOutput = CipherToolkit.pBox(input, expansionPBox);
         String xorOutput = CipherToolkit.XOR(expandedOutput, roundKey);
 
         String sBoxOutput = "";
         
         for(int i=0; i<8; i++)
         {
-            sBoxOutput += CipherToolkit.DESSBox(xorOutput.substring(i*6, i*6 + 6), this.sBoxes[i]);
+            sBoxOutput += DESSBox(xorOutput.substring(i*6, i*6 + 6), sBoxes[i]);
         }
 
-        String finalOutput = CipherToolkit.pBox(sBoxOutput, this.straightPBox);
+        String finalOutput = CipherToolkit.pBox(sBoxOutput, straightPBox);
 
         return finalOutput;
     }
@@ -143,7 +162,7 @@ public class DESEncryption {
             System.out.println(CipherToolkit.binToHex(left));
             System.out.println(CipherToolkit.binToHex(right));
 
-            String processedRight = this.fiestelRound(right, CipherToolkit.hexToBin(keys.DESKeys[i-1]));
+            String processedRight = fiestelRound(right, CipherToolkit.hexToBin(keys.DESKeys[i-1]));
             String whitener = CipherToolkit.XOR(left, processedRight);
 
             intermediateString = right + whitener;
