@@ -64,7 +64,7 @@ public class AESKeyExpansion
         String xorString = CipherToolkit.binToHex(CipherToolkit.XOR(CipherToolkit.hexToBin(substitutedString), CipherToolkit.hexToBin(CipherToolkit.processString(RConstants[t]))));
         this.tValues[t] = xorString.toUpperCase();
 
-        System.out.println(tValues[t]);
+        // System.out.println(tValues[t]);
     }
 
     public String wValueGen(int t)
@@ -87,13 +87,26 @@ public class AESKeyExpansion
         {
             tValueGen(wValues[0], i);
             this.AESKeys[i] = this.wValueGen(i);
-            System.out.println(AESKeys[i]);
+            // System.out.println(AESKeys[i]);
         }
+
+        this.displayKeyTable();
     }   
 
     public void displayKeyTable()
     {
-
+        System.out.printf("%-5s %-10s %-10s %-10s %-10s %-10s%n", "No.", "t", "w0", "w1", "w2", "w3");
+        System.out.println("----------------------------------------------------------");
+        for (int i = 0; i < this.tValues.length; i++) 
+        {
+            System.out.printf("%-5d %-10s %-10s %-10s %-10s %-10s%n",
+            i + 1, 
+            this.tValues[i], 
+            this.AESKeys[i].substring(0, 8), 
+            this.AESKeys[i].substring(8, 16), 
+            this.AESKeys[i].substring(16, 24), 
+            this.AESKeys[i].substring(24, 32));
+        }
     }
 
     public static void main(String[] args) 

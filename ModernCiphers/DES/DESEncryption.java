@@ -41,7 +41,7 @@ public class DESEncryption {
 
     static int straightPBox[] = {
         16, 7, 20, 21, 29, 12, 28, 17, 
-        1, 15, 23, 26, 05, 18, 31, 10, 
+        1, 15, 23, 26, 5, 18, 31, 10, 
         2, 8, 24, 14, 32, 27, 03, 9, 
         19, 13, 30, 06, 22, 11, 04, 25
     };
@@ -134,7 +134,6 @@ public class DESEncryption {
         }
 
         String finalOutput = CipherToolkit.pBox(sBoxOutput, straightPBox);
-
         return finalOutput;
     }
 
@@ -159,8 +158,8 @@ public class DESEncryption {
             String left = CipherToolkit.leftHalf(intermediateString);
             String right = CipherToolkit.rightHalf(intermediateString);
 
-            System.out.println(CipherToolkit.binToHex(left));
-            System.out.println(CipherToolkit.binToHex(right));
+            // System.out.println(CipherToolkit.binToHex(left));
+            // System.out.println(CipherToolkit.binToHex(right));
 
             String processedRight = fiestelRound(right, CipherToolkit.hexToBin(keys.DESKeys[i-1]));
             String whitener = CipherToolkit.XOR(left, processedRight);
@@ -180,11 +179,11 @@ public class DESEncryption {
 
     public static void main(String[] args) 
     {
-        String key = "AABB 0918 2736 CCDD";
+        String key = "0002 0000 0000 0002";
         DESKeygen keys = new DESKeygen();
         keys.DESKeyGeneration(key);
 
-        String plainText = "1234 56AB CD13 2536";
+        String plainText = "0002 0000 0000 0001";
         DESEncryption encryption = new DESEncryption();
         encryption.DESEncryptionProcess(plainText, keys);
     }
