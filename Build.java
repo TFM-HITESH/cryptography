@@ -20,6 +20,7 @@ public class Build {
             "TraditionalCiphers/VigenereCipher.java",
             "TraditionalCiphers/PlayfairCipher.java",
             "TraditionalCiphers/HillCipher.java",
+
             "ModernCiphers/CipherTools/CipherToolkit.java", 
             "ModernCiphers/DES/DESKeygen.java", 
             "ModernCiphers/DES/DESEncryption.java", 
@@ -29,8 +30,19 @@ public class Build {
             "ModernCiphers/RC4/RC4Decryption.java",
             "ModernCiphers/AES/AESKeyExpansion.java",
             "ModernCiphers/AES/AESEncryption.java",
+
+            "SimpleSocket/SimpleServer.java",
+            "SimpleSocket/SimpleClient.java",
+            
             "AsymmetricCiphers/RSA/RSAClient.java",
-            "AsymmetricCiphers/RSA/RSAServer.java"
+            "AsymmetricCiphers/RSA/RSAServer.java",
+            "AsymmetricCiphers/Elgamal/ElgamalServer.java",
+            "AsymmetricCiphers/Elgamal/ElgamalClient.java",
+            "AsymmetricCiphers/DiffieHellmanServer.java",
+            "AsymmetricCiphers/DiffieHellmanClient.java",
+            "AsymmetricCiphers/DiffieMITM/DiffieMITMServer.java",
+            "AsymmetricCiphers/DiffieMITM/DiffieMITMClientA.java",
+            "AsymmetricCiphers/DiffieMITM/DiffieMITMClientB.java"
         };
 
         System.out.println("Starting Compilation...\n");
