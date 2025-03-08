@@ -19,7 +19,6 @@ public class HelperTools
         return tempMod % modValue;
     }   
 
-
     // Computes inverseValue^-1 % modValue
     public static int inverseCalculator(int inverseValue, int modValue)
     {
@@ -33,6 +32,7 @@ public class HelperTools
         }
     }   
 
+    // Checks if n is prime or not
     public static boolean checkPrime(int n)
     {
         for(int i=2; i<n; i++)
@@ -45,6 +45,7 @@ public class HelperTools
         return true;
     }
 
+    // Calculates euler totien value
     public static int phiTotientCalculator(int n)
     {
         HashMap<Integer, Integer> primeFactors = new HashMap<Integer, Integer>();

@@ -29,7 +29,8 @@ public class Build {
             "ModernCiphers/RC4/RC4Decryption.java",
             "ModernCiphers/AES/AESKeyExpansion.java",
             "ModernCiphers/AES/AESEncryption.java",
-            "AsymmetricCiphers/RSA/BasicRSA.java"
+            "AsymmetricCiphers/RSA/RSAClient.java",
+            "AsymmetricCiphers/RSA/RSAServer.java"
         };
 
         System.out.println("Starting Compilation...\n");
