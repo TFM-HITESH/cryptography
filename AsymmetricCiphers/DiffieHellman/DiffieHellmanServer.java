@@ -46,6 +46,7 @@ public class DiffieHellmanServer {
         System.out.println("SHARED KEY VALUE DERIVED FROM R1, R2 = " + sharedKey);
         System.out.println("================================================");
 
+        diffieHellmanServer.close();
         serverSocket.close();
         serverInput.close();
         clientInput.close();

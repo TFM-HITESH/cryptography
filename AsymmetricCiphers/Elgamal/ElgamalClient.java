@@ -45,5 +45,9 @@ public class ElgamalClient
         System.out.println("FINAL CIPHERTEXT = (" + c1Value + ", " + c2Value + ")");
         System.out.println("================================================");
 
+
+        clientSocket.close();
+        clientInput.close();
+        serverInput.close();
     }
 }

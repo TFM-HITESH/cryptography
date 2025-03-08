@@ -1,1 +1,0 @@
-javac ModernCiphers/CipherTools/CipherToolkit.java ModernCiphers/DES/DESKeygen.java ModernCiphers/DES/DESEncryption.java ModernCiphers/RC4/KeyScheduler.java ModernCiphers/RC4/PseudoRandomGenerator.java

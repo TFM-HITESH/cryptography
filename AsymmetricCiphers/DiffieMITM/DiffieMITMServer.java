@@ -60,6 +60,8 @@ public class DiffieMITMServer {
         System.out.println("SHARED KEY VALUE DERIVED FROM CLIENT B = " + sharedKey2);
         System.out.println("================================================");
 
+        diffieMITMServerA.close();
+        diffieMITMServerB.close();
         serverSocketA.close();
         serverSocketB.close();
         serverInput.close();

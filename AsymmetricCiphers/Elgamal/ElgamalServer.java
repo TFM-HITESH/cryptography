@@ -50,5 +50,11 @@ public class ElgamalServer
         System.out.println("================================================");
         System.out.println("FINAL DECRYPTED PLAINTEXT = " + plainText);
         System.out.println("================================================");
+
+
+        elgamalServer.close();
+        serverSocket.close();
+        clientInput.close();
+        serverInput.close();
     }
 }
