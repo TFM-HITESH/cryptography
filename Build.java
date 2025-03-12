@@ -21,7 +21,8 @@ public class Build {
             "TraditionalCiphers/PlayfairCipher.java",
             "TraditionalCiphers/HillCipher.java",
 
-            "ModernCiphers/CipherTools/CipherToolkit.java", 
+            "ModernCiphers/CipherTools/CipherToolkit.java",
+
             "ModernCiphers/DES/DESKeygen.java", 
             "ModernCiphers/DES/DESEncryption.java", 
             "ModernCiphers/RC4/KeyScheduler.java", 
@@ -33,16 +34,21 @@ public class Build {
 
             "SimpleSocket/SimpleServer.java",
             "SimpleSocket/SimpleClient.java",
+
+            "AsymmetricCiphers/HelperTools/HelperTools.java",
+            "AsymmetricCiphers/HelperTools/ECCPoint.java",
             
             "AsymmetricCiphers/RSA/RSAClient.java",
             "AsymmetricCiphers/RSA/RSAServer.java",
             "AsymmetricCiphers/Elgamal/ElgamalServer.java",
             "AsymmetricCiphers/Elgamal/ElgamalClient.java",
-            "AsymmetricCiphers/DiffieHellmanServer.java",
-            "AsymmetricCiphers/DiffieHellmanClient.java",
+            "AsymmetricCiphers/DiffieHellman/DiffieHellmanServer.java",
+            "AsymmetricCiphers/DiffieHellman/DiffieHellmanClient.java",
             "AsymmetricCiphers/DiffieMITM/DiffieMITMServer.java",
             "AsymmetricCiphers/DiffieMITM/DiffieMITMClientA.java",
-            "AsymmetricCiphers/DiffieMITM/DiffieMITMClientB.java"
+            "AsymmetricCiphers/DiffieMITM/DiffieMITMClientB.java",
+            "AsymmetricCiphers/ECCElgamal/ECCElgamalServer.java",
+            "AsymmetricCiphers/ECCElgamal/ECCElgamalClient.java"
         };
 
         System.out.println("Starting Compilation...\n");
